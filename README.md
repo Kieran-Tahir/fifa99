@@ -1,4 +1,4 @@
-# `Template`
+# `Kieran's React Template v1`
 
 ### `npm start`
 
