@@ -1,34 +1,34 @@
 import React, { useState } from "react";
 import { db } from "./db";
 
-function AddThingForm() {
+function AddPlayerForm() {
   const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
+  const [rating, setRating] = useState(0);
   const [status, setStatus] = useState("");
 
-  async function addThing() {
+  async function addPlayer() {
     if (name !== "") {
       try {
-        // Add the new thing
-        const id = await db.things.add({
+        // Add the new player
+        const id = await db.players.add({
           name,
-          age: parseInt(age),
+          rating: parseInt(rating),
         });
 
-        setStatus(`Thing ${name} successfully added. id: ${id}`);
+        setStatus(`Player ${name} successfully added. id: ${id}`);
         setName("");
-        setAge(0);
+        setRating(0);
       } catch (error) {
         setStatus(`Failed to add ${name}: ${error}`);
       }
     } else {
-      setStatus("Please enter your thing's name!");
+      setStatus("Please enter your Player's name!");
     }
   }
 
   return (
     <>
-      <h2>Add a thing</h2>
+      <h2>Add a Player</h2>
       {status ? <p>{status}</p> : <p>...</p>}
       <div className="form">
         <div className="input-row">
@@ -36,22 +36,22 @@ function AddThingForm() {
           <input
             type="text"
             className="input-field"
-            placeholder="e.g. Thing 1"
+            placeholder="e.g. Phil Foden"
             value={name}
             onChange={(ev) => setName(ev.target.value)}
           />
         </div>
         <div className="input-row">
-          <label>Age</label>
+          <label>Rating</label>
           <input
             type="text"
-            className="age-input-field"
-            placeholder="30"
-            value={age}
-            onChange={(ev) => setAge(ev.target.value)}
+            className="rating-input-field"
+            placeholder="85"
+            value={rating}
+            onChange={(ev) => setRating(ev.target.value)}
           />
         </div>
-        <button onClick={addThing} className="add-button">
+        <button onClick={addPlayer} className="add-button">
           +
         </button>
       </div>
@@ -59,4 +59,4 @@ function AddThingForm() {
   );
 }
 
-export default AddThingForm;
+export default AddPlayerForm;

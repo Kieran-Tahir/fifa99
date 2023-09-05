@@ -1,30 +1,30 @@
 import { useState } from "react";
 import "./styles/index.scss";
-import AddThingForm from "./AddThingForm";
+import AddPlayerForm from "./AddPlayerForm";
 import Filter from "./Filter";
-import FilteredThingList from "./FilteredThingList";
+import FilteredPlayerList from "./FilteredPlayerList";
 
 function App() {
-  const [maxAge, setMaxAge] = useState(100);
+  const [maxRating, setMaxRating] = useState(100);
   const [nameFilter, setNameFilter] = useState("");
 
   return (
     <div className="App">
       <div className="content-wrap">
         <div className="content-wrap-left">
-          <AddThingForm defaultAge={30} />
+          <AddPlayerForm defaultAge={30} />
         </div>
         <div className="content-wrap-right">
           <Filter
-            maxAge={maxAge}
+            maxRating={maxRating}
             nameFilter={nameFilter}
-            setMaxAge={setMaxAge}
+            setMaxRating={setMaxRating}
             setNameFilter={setNameFilter}
           />
         </div>
       </div>
-          <FilteredThingList
-            maxAge={maxAge}
+          <FilteredPlayerList
+            maxRating={maxRating}
             nameFilter={nameFilter}
           />
     </div>

@@ -16,7 +16,7 @@ body {
   flex-direction: row;
 }
 
-.thinglist-container {
+.playerlist-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -26,7 +26,7 @@ body {
   margin-left: 10%;
 }
 
-.thing-card {
+.player-card {
   display: flex;
   justify-content: center;
   align-items: center;
