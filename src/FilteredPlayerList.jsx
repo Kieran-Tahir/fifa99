@@ -3,18 +3,6 @@ import { db } from "./db";
 import { useLiveQuery } from "dexie-react-hooks";
 
 function FilteredPlayerList({ maxRating, nameFilter }) {
-  // const players = useLiveQuery(async () => {
-  //   let playersQuery = db.players.where("rating").between(0, maxRating + 1);
-  //   if (nameFilter !== "") {
-  //     playersQuery = playersQuery.and((player) => player.name === nameFilter);
-  //   }
-
-  //   const filteredPlayers = await playersQuery.toArray();
-  //   console.log('filteredPlayers is: ', filteredPlayers)
-
-  //   return filteredPlayers;
-  // }, [maxRating, nameFilter]);
-  
   const players = useLiveQuery(async () => {
     let thingsQuery = db.players.where("rating").between(0, maxRating + 1);
     
@@ -26,9 +14,6 @@ function FilteredPlayerList({ maxRating, nameFilter }) {
     
     return filteredThings;
   }, [maxRating, nameFilter]);
-  
-  console.log('maxRating is: ', maxRating)
-  console.log("players is: ", players);
 
   return (
     <>
@@ -45,13 +30,13 @@ function FilteredPlayerList({ maxRating, nameFilter }) {
               <div className="button-row">
                 <button
                   className="update-button"
-                  onClick={console.log("Something could happen here...")}
+                  onClick={() => console.log("Something could happen here...")}
                 >
                   Update
                 </button>
                 <button
                   className="delete-button"
-                  onClick={console.log("Something could happen here...")}
+                  onClick={() => console.log("Something could happen here...")}
                 >
                   x
                 </button>
