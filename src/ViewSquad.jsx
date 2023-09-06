@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { db } from "./db";
+import SquareCanvas from "./SquareCanvas";
 
-function ViewSquad () {
-    return (
-        <>
-        <div>Here is your squad</div>
-        </>
-    )
+function ViewSquad() {
+  return (
+    <>
+      <div>
+        <SquareCanvas />
+      </div>
+    </>
+  );
 }
 
-export default ViewSquad
+export default ViewSquad;

@@ -5,8 +5,8 @@ function NavBar() {
   return (
     <>
       <div>
-        <Link to="/addplayer" className="nav-link">Add Player</Link>
-        <Link to="/viewsquad" className="nav-link">View Squad</Link>
+        <Link to="/addplayer" className="nav-link">Players</Link>
+        <Link to="/viewsquad" className="nav-link">Squad</Link>
       </div>
     </>
   );
