@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { db } from './db'
+import { db } from "./db";
 
 function PlayerCard({ player }) {
   const [newProperty, setNewProperty] = useState({ key: "", value: "" });
@@ -8,22 +8,21 @@ function PlayerCard({ player }) {
     try {
       // Fetch the player from the database
       const player = await db.players.get(playerId);
-  
+
       if (!player) {
         console.log("Player not found");
         return;
       }
-  
+
       // Delete the property from the player object
       delete player[propertyKey];
-  
+
       // Update the player in the database with the modified data
       await db.players.put(player, playerId);
     } catch (error) {
       console.log("Failed to delete player property:", error);
     }
   }
-  
 
   async function addPlayerProperty(playerId) {
     try {
@@ -61,9 +60,10 @@ function PlayerCard({ player }) {
             </div>
           ))}
         </div>
-        <div className="property-form">
+        <div>
           <input
             type="text"
+            className="property-form"
             placeholder="Property Key"
             value={newProperty.key}
             onChange={(e) =>
@@ -72,6 +72,7 @@ function PlayerCard({ player }) {
           />
           <input
             type="text"
+            className="property-form"
             placeholder="Property Value"
             value={newProperty.value}
             onChange={(e) =>
@@ -79,10 +80,10 @@ function PlayerCard({ player }) {
             }
           />
           <button
-            className="add-property-button"
             onClick={() => addPlayerProperty(player.id)}
+            className="add-property-button"
           >
-            Add Property
+            +
           </button>
         </div>
       </div>

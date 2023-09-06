@@ -168,3 +168,44 @@ body {
 .canvas{
   background-color: rgb(164, 255, 164);
 }
+
+.add-property-button {
+  border: none;
+  background-color: rgb(188, 232, 188);
+  width: 15px;
+  height: 15px;
+  border-radius: 5%;
+  box-shadow: 2px 2px rgb(49, 63, 49);
+  margin: 3px;
+  margin-top: 5px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.add-property-button:hover {
+  background-color: rgb(93, 222, 93);
+}
+
+.property-form{
+  margin: 2px;
+}
+
+.delete-property-button{
+
+}
+
+.delete-property-button {
+  border: none;
+  background-color: rgb(232, 188, 188);
+  width: 15px;
+  height: 15px;
+  border-radius: 5%;
+  box-shadow: 2px 2px rgb(49, 63, 49);
+  margin-top: 5px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.delete-property-button:hover {
+  background-color: rgb(255, 50, 50);
+}
