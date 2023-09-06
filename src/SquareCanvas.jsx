@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./db"; // Import the Dexie database
-import PlayerCard from "./PlayerCard";
 function SquareCanvas() {
   const [squares, setSquares] = useState([]); // State to manage created squares
   const [selectedPlayer, setSelectedPlayer] = useState(""); // State to manage the selected player from the dropdown
