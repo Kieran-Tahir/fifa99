@@ -1,9 +1,39 @@
 .sidebar {
     display: flex;
-    flex-direction: column; /* To align items vertically */
-    background-color: rgb(202, 206, 255);
+    flex-direction: column;
+    border-right: 0.5px solid;
     width: 200px;
-    height: 100vh; /* Sets the height to 100% of the viewport height */
+    height: 100vh;
+    padding: 10px;
     padding-top: 50px; /* Adjust this value according to your design */
+  }
+  
+  .formation-dropdown,
+  .formation-button,
+  .player-dropdown,
+  .formation-input {
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .formation-button,
+  .add-players-button,
+  .save-formation-button {
+    border: none;
+    background-color: rgb(188, 232, 188);
+    width: 100%;
+    height: 35px;
+    border-radius: 5%;
+    box-shadow: 2px 2px rgb(49, 63, 49);
+    margin: 3px;
+    margin-top: 5px;
+    padding: 2px;
+    cursor: pointer;
+  }
+  
+  .formation-button:hover,
+  .add-players-button:hover,
+  .save-formation-button:hover {
+    background-color: rgb(93, 222, 93);
   }
   

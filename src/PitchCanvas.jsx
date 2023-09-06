@@ -1,45 +1,7 @@
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { db } from "./db";
 
 function PitchCanvas({ squares, setSquares }) {
-  const [selectedPlayer, setSelectedPlayer] = useState("");
-  const [players, setPlayers] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const playersFromDB = await db.players.toArray();
-        setPlayers(playersFromDB);
-      } catch (error) {
-        console.error(`Failed to fetch data: ${error}`);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  const handleCreatePlayer = async () => {
-    if (selectedPlayer !== "") {
-      try {
-        const player = await db.players.get({ name: selectedPlayer });
-        const newSquare = {
-          id: Date.now(),
-          x: 50,
-          y: 50,
-          position: "absolute",
-          player: player,
-        };
-        setSquares([...squares, newSquare]);
-        await db.squares.add(newSquare);
-      } catch (error) {
-        console.error(`Failed to add player to square: ${error}`);
-      }
-    } else {
-      console.log("Please select a player from the dropdown.");
-    }
-  };
-
   const handleSquareMouseDown = (event, square) => {
     const x = event.clientX - square.x;
     const y = event.clientY - square.y;
@@ -83,24 +45,8 @@ function PitchCanvas({ squares, setSquares }) {
 
   return (
     <>
-      <div className="player-dropdown">
-        <select
-          value={selectedPlayer}
-          onChange={(e) => setSelectedPlayer(e.target.value)}
-        >
-          <option value="">Select a player</option>
-          {players.map((player) => (
-            <option key={player.id} value={player.name}>
-              {player.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button onClick={handleCreatePlayer} className="update-button">
-        Add player to pitch
-      </button>
       <div className="canvas">
-      {squares.map((square) => (
+        {squares.map((square) => (
           <div
             className="player-card"
             key={square.id}
@@ -126,7 +72,8 @@ function PitchCanvas({ squares, setSquares }) {
               </div>
             )}
           </div>
-        ))}      </div>
+        ))}
+      </div>
     </>
   );
 }
