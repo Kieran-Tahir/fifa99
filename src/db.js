@@ -1,8 +1,8 @@
 import Dexie from "dexie";
 
-export const db = new Dexie("myDatabase");
-
+export const db = new Dexie("MyDatabase");
 db.version(1).stores({
-  players: "++id, name, rating",
-  squares: "++id, x, y, playerName",
+  squares: "++id,x,y",
+  players: "++id,name,rating",
+  formations: "++id,name,layout",
 });

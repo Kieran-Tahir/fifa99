@@ -4,7 +4,7 @@ import SquareCanvas from "./SquareCanvas";
 function ViewSquad() {
   return (
     <>
-      <div>
+      <div className="squad-view-container">
         <SquareCanvas />
       </div>
     </>

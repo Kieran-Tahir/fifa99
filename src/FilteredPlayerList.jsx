@@ -16,6 +16,7 @@ function FilteredPlayerList({ maxRating, nameFilter }) {
     return filteredThings;
   }, [maxRating, nameFilter]);
 
+
   return (
     <>
       <div>

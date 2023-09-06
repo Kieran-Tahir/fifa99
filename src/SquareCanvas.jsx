@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { db } from "./db"; // Import the Dexie database
-function SquareCanvas() {
-  const [squares, setSquares] = useState([]); // State to manage created squares
-  const [selectedPlayer, setSelectedPlayer] = useState(""); // State to manage the selected player from the dropdown
-  const [players, setPlayers] = useState([]); // State to store the list of players
+import { db } from "./db";
 
-  // Fetch squares and players from the database on component mount
+function SquareCanvas() {
+  const [squares, setSquares] = useState([]);
+  const [selectedPlayer, setSelectedPlayer] = useState("");
+  const [players, setPlayers] = useState([]);
+  const [formationName, setFormationName] = useState("");
+  const [formations, setFormations] = useState([]);
+  
   useEffect(() => {
     async function fetchData() {
       try {
         const squaresFromDB = await db.squares.toArray();
         const playersFromDB = await db.players.toArray();
+        const formationsFromDB = await db.formations.toArray();
         setSquares(squaresFromDB);
         setPlayers(playersFromDB);
+        setFormations(formationsFromDB);
       } catch (error) {
         console.error(`Failed to fetch data: ${error}`);
       }
@@ -24,22 +28,15 @@ function SquareCanvas() {
   const handleCreatePlayer = async () => {
     if (selectedPlayer !== "") {
       try {
-        // Add the selected player to the database
         const player = await db.players.get({ name: selectedPlayer });
-
-        // Create a new square with player info
         const newSquare = {
           id: Date.now(),
-          x: 0, // Initial position
-          y: 0, // Initial position
+          x: 50,
+          y: 50,
           position: "absolute",
-          player: player, // Attach player info to the square
+          player: player,
         };
-
-        // Save the new square to the state
         setSquares([...squares, newSquare]);
-
-        // Save the new square to the database
         await db.squares.add(newSquare);
       } catch (error) {
         console.error(`Failed to add player to square: ${error}`);
@@ -53,11 +50,9 @@ function SquareCanvas() {
     const x = event.clientX - square.x;
     const y = event.clientY - square.y;
 
-    const handleMouseMove = (event) => {
+    function handleMouseMove(event) {
       const newX = event.clientX - x;
       const newY = event.clientY - y;
-
-      // Update the position of the active square in the state
       setSquares((prevSquares) =>
         prevSquares.map((prevSquare) =>
           prevSquare.id === square.id
@@ -65,38 +60,63 @@ function SquareCanvas() {
             : prevSquare
         )
       );
-
-      // Update the position of the active square in the database
       db.squares.update(square.id, { x: newX, y: newY });
-    };
+    }
 
-    const handleMouseUp = () => {
+    function handleMouseUp() {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
-    };
+    }
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  // Function to remove a player-card from the canvas
   const removePlayerFromSquad = async (playerId) => {
     try {
-      // Filter out the square associated with the player to remove
       const updatedSquares = squares.filter((square) => {
-        // If the square has a player and the player's ID matches the one to remove, exclude it
         if (square.player && square.player.id === playerId) {
-          // Remove the square from the database
           db.squares.delete(square.id);
-          return false; // Exclude this square from the updatedSquares array
+          return false;
         }
-        return true; // Include all other squares
+        return true;
       });
-
-      // Update the state with the filtered squares
       setSquares(updatedSquares);
     } catch (error) {
       console.error(`Failed to remove player from squad: ${error}`);
+    }
+  };
+
+  const saveFormation = async () => {
+    try {
+      const formation = {
+        name: formationName || `Formation-${new Date().toISOString()}`,
+        layout: squares,
+      };
+      console.log('formation is: ', formation)
+      await db.formations.add(formation);
+      setFormations([...formations, formation]);
+      console.log('formations is: ', formations)
+      setFormationName("");
+    } catch (error) {
+      console.error(`Failed to save formation: ${error}`);
+    }
+  };
+
+  const loadFormation = async (formationId) => {
+    const id = Number(formationId);
+    console.log('load formation function runs')
+    try {
+      console.log('formationId is: ', formationId)
+      console.log('formations is: ', formations)
+      const formation = await db.formations.get(id);
+      console.log('formation is: ', formation)
+      if (formation) {
+        console.log('formation is: ', formation)
+        setSquares(formation.layout);
+      }
+    } catch (error) {
+      console.error(`Failed to load formation: ${error}`);
     }
   };
 
@@ -108,7 +128,7 @@ function SquareCanvas() {
           onChange={(e) => setSelectedPlayer(e.target.value)}
         >
           <option value="">Select a player</option>
-          {players?.map((player) => (
+          {players.map((player) => (
             <option key={player.id} value={player.name}>
               {player.name}
             </option>
@@ -118,6 +138,23 @@ function SquareCanvas() {
       <button onClick={handleCreatePlayer} className="update-button">
         Add player to pitch
       </button>
+      <div className="formation-controls">
+        <input
+          type="text"
+          placeholder="Formation name"
+          value={formationName}
+          onChange={(e) => setFormationName(e.target.value)}
+        />
+        <button onClick={saveFormation}>Save Formation</button>
+        <select onChange={(e) => loadFormation(e.target.value)}>
+          <option value="">Select a Formation</option>
+          {formations.map((formation) => (
+            <option key={formation.id} value={formation.id}>
+              {formation.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="canvas">
         {squares.map((square) => (
           <div
