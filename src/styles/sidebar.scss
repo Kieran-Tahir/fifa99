@@ -1,0 +1,9 @@
+.sidebar {
+    display: flex;
+    flex-direction: column; /* To align items vertically */
+    background-color: rgb(202, 206, 255);
+    width: 200px;
+    height: 100vh; /* Sets the height to 100% of the viewport height */
+    padding-top: 50px; /* Adjust this value according to your design */
+  }
+  

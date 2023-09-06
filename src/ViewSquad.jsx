@@ -1,11 +1,41 @@
-import React from "react";
-import SquareCanvas from "./SquareCanvas";
+import React, { useState, useEffect } from "react";
+import PitchCanvas from "./PitchCanvas";
+import Formations from "./Formations";
+import { db } from "./db";
 
 function ViewSquad() {
+  const [formations, setFormations] = useState([]);
+  const [squares, setSquares] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const squaresFromDB = await db.squares.toArray();
+        const formationsFromDB = await db.formations.toArray();
+        setSquares(squaresFromDB);
+        setFormations(formationsFromDB);
+      } catch (error) {
+        console.error(`Failed to fetch data: ${error}`);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <div className="squad-view-container">
-        <SquareCanvas />
+      <div>
+        <div className="sidebar">
+          <Formations
+            formations={formations}
+            setFormations={setFormations}
+            setSquares={setSquares}
+            squares={squares}
+          />
+        </div>
+        <div className="content">
+          <PitchCanvas squares={squares} setSquares={setSquares} />
+        </div>
       </div>
     </>
   );
