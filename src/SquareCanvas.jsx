@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./db"; // Import the Dexie database
-
+import PlayerCard from "./PlayerCard";
 function SquareCanvas() {
   const [squares, setSquares] = useState([]); // State to manage created squares
   const [selectedPlayer, setSelectedPlayer] = useState(""); // State to manage the selected player from the dropdown
@@ -80,6 +80,27 @@ function SquareCanvas() {
     document.addEventListener("mouseup", handleMouseUp);
   };
 
+  // Function to remove a player-card from the canvas
+  const removePlayerFromSquad = async (playerId) => {
+    try {
+      // Filter out the square associated with the player to remove
+      const updatedSquares = squares.filter((square) => {
+        // If the square has a player and the player's ID matches the one to remove, exclude it
+        if (square.player && square.player.id === playerId) {
+          // Remove the square from the database
+          db.squares.delete(square.id);
+          return false; // Exclude this square from the updatedSquares array
+        }
+        return true; // Include all other squares
+      });
+
+      // Update the state with the filtered squares
+      setSquares(updatedSquares);
+    } catch (error) {
+      console.error(`Failed to remove player from squad: ${error}`);
+    }
+  };
+
   return (
     <>
       <div className="player-dropdown">
@@ -116,6 +137,12 @@ function SquareCanvas() {
                 <p>
                   {square.player.name}, {square.player.rating}
                 </p>
+                <button
+                  className="delete-button"
+                  onClick={() => removePlayerFromSquad(square.player.id)}
+                >
+                  x
+                </button>
               </div>
             )}
           </div>

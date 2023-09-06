@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { db } from "./db";
+import React from "react";
 import SquareCanvas from "./SquareCanvas";
 
 function ViewSquad() {
