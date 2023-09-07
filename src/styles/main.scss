@@ -22,8 +22,8 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
   padding: 20px;
-  margin-right: 10%;
-  margin-left: 10%;
+  // margin-right: 10%;
+  // margin-left: 10%;
 }
 
 .player-card {
@@ -50,7 +50,7 @@ body {
 }
 
 .input-row {
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: center;
   margin: 8px 0;
@@ -100,15 +100,24 @@ body {
   background-color: rgb(93, 222, 93);
 }
 
-.content-wrap-left {
-  width: 50%;
-}
+// .content-wrap-left {
+//   flex: 1;
+//   padding: 20px;
+//   border-right: 2px solid #ccc; /* Add a border if you like */
+//   min-width: 250px; /* Set a minimum width */
+//   background-color: #f4f4f4; /* Background color for the sidebar */
+// }
 
-.content-wrap-right {
-  width: 50%;
-  padding-left: 20px;
-  border-left: 0.5px solid;
-}
+// .content-wrap-right {
+//   width: 50%;
+//   padding-left: 20px;
+//   border-left: 0.5px solid;
+// }
+
+// .content-wrap-right {
+//   flex: 3;
+//   padding: 20px;
+// }
 
 .button-row {
   margin: 2px;
@@ -212,4 +221,8 @@ body {
 
 .green-background{
   background-color: rgb(161, 248, 161);
+}
+
+.status{
+  font-size: 12px;
 }

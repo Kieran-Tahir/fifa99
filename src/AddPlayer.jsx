@@ -10,19 +10,17 @@ function AddPlayer() {
   return (
     <>
       <div className="content-wrap">
-        <div className="content-wrap-left">
           <AddPlayerForm defaultAge={30} />
-        </div>
         <div className="content-wrap-right">
-          <Filter
+          {/* <Filter
             maxRating={maxRating}
             nameFilter={nameFilter}
             setMaxRating={setMaxRating}
             setNameFilter={setNameFilter}
-          />
+          /> */}
+          <FilteredPlayerList maxRating={maxRating} nameFilter={nameFilter} />
         </div>
       </div>
-      <FilteredPlayerList maxRating={maxRating} nameFilter={nameFilter} />
     </>
   );
 }

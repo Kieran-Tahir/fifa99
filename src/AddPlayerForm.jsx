@@ -22,38 +22,40 @@ function AddPlayerForm() {
         setStatus(`Failed to add ${name}: ${error}`);
       }
     } else {
-      setStatus("Please enter your Player's name!");
+      setStatus("Please enter your player's name and rating");
     }
   }
 
   return (
     <>
-      <h2>Add a Player</h2>
-      {status ? <p>{status}</p> : <p>...</p>}
-      <div className="form">
-        <div className="input-row">
-          <label>Name</label>
-          <input
-            type="text"
-            className="input-field"
-            placeholder="e.g. Phil Foden"
-            value={name}
-            onChange={(ev) => setName(ev.target.value)}
-          />
+      <div className="sidebar">
+        <h3>Add a Player</h3>
+        <div className="form">
+          <div className="input-row">
+            <label>Name</label>
+            <input
+              type="text"
+              className="input-field"
+              placeholder="e.g. Phil Foden"
+              value={name}
+              onChange={(ev) => setName(ev.target.value)}
+              />
+          </div>
+          <div className="input-row">
+            <label>Rating</label>
+            <input
+              type="text"
+              className="rating-input-field"
+              placeholder="85"
+              value={rating}
+              onChange={(ev) => setRating(ev.target.value)}
+              />
+          </div>
+          <button onClick={addPlayer} className="add-button">
+            +
+          </button>
+              {status ? <p className="status">{status}</p> : <p></p>}
         </div>
-        <div className="input-row">
-          <label>Rating</label>
-          <input
-            type="text"
-            className="rating-input-field"
-            placeholder="85"
-            value={rating}
-            onChange={(ev) => setRating(ev.target.value)}
-          />
-        </div>
-        <button onClick={addPlayer} className="add-button">
-          +
-        </button>
       </div>
     </>
   );

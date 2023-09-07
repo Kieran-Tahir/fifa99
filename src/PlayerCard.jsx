@@ -4,6 +4,15 @@ import { db } from "./db";
 function PlayerCard({ player }) {
   const [newProperty, setNewProperty] = useState({ key: "", value: "" });
 
+  async function deleteEntirePlayer(playerId) {
+    try {
+      await db.players.delete(playerId);
+      console.log("Player deleted successfully");
+    } catch (error) {
+      console.log("Failed to delete player:", error);
+    }
+  }
+
   async function deletePlayerProperty(playerId, propertyKey) {
     try {
       // Fetch the player from the database
@@ -47,18 +56,20 @@ function PlayerCard({ player }) {
           </p>
         </div>
         <div className="player-properties">
-          {Object.entries(player).map(([key, value]) => (
-            <div key={key} className="player-property">
-              <span className="property-key">{key}:</span>
-              <span className="property-value">{value}</span>
-              <button
-                className="delete-property-button"
-                onClick={() => deletePlayerProperty(player.id, key)}
-              >
-                x
-              </button>
-            </div>
-          ))}
+          {Object.entries(player)
+            .filter(([key]) => key !== "id" && key !== "name" && key !== "rating") // Exclude "id" and "name"
+            .map(([key, value]) => (
+              <div key={key} className="player-property">
+                <span className="property-key">{key}:</span>
+                <span className="property-value">{value}</span>
+                <button
+                  className="delete-property-button"
+                  onClick={() => deletePlayerProperty(player.id, key)}
+                >
+                  x
+                </button>
+              </div>
+            ))}
         </div>
         <div>
           <input
@@ -84,6 +95,14 @@ function PlayerCard({ player }) {
             className="add-property-button"
           >
             +
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => deleteEntirePlayer(player.id)}
+            className="delete-player-button"
+          >
+            Delete Player
           </button>
         </div>
       </div>

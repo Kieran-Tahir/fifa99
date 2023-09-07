@@ -20,16 +20,24 @@
   color: rgb(58, 130, 255);
   padding: 5px;
   margin: 5px;
+  background-color: rgb(225, 220, 250);
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
 }
 
 .nav-link:hover {
   color: purple;
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
 }
 
 .nav-left{
   width: 50%;
+  display: flex;
+  justify-content: left;
 }
 
 .nav-right{
+  display: flex;
   width: 50%;
+  justify-content: left;
+  align-items: center;
 }

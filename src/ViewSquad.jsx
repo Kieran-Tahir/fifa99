@@ -25,7 +25,7 @@ function ViewSquad({squadValue, setSquadValue}) {
   return (
     <>
       <div>
-        <div>
+        <div className="content-wrap">
           <Formations
             formations={formations}
             setFormations={setFormations}

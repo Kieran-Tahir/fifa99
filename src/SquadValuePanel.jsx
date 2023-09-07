@@ -47,6 +47,7 @@ function SquadValuePanel({ squadValue }) {
         </>
       ) : (
         <div>
+          
           <span title="Current squad value">
             {squadValue}
           </span>
