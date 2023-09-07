@@ -147,7 +147,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
     setSquares([]);
     setShowFormationDetails(true);
     setFormationName("");
-    setSelectedPlayers(Array(15).fill(""));
+    setSelectedPlayers(Array(16).fill(""));
     setCurrentFormationId(null);
   };
 
@@ -178,7 +178,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
             onChange={(e) => setFormationName(e.target.value)}
           />
           <label>Select Your Players:</label>
-          {Array.from({ length: 15 }).map((_, i) => (
+          {Array.from({ length: 16 }).map((_, i) => (
             <select
               key={i}
               className="player-dropdown bulge"

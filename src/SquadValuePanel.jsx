@@ -3,7 +3,7 @@ import { db } from "./db";
 
 function SquadValuePanel({ squadValue }) {
   const [isActive, setIsActive] = useState(false);
-  const [maximumSquadValue, setMaximumSquadValue] = useState(1275);
+  const [maximumSquadValue, setMaximumSquadValue] = useState(1250);
 
   // Add a value initially if the table is empty
   useEffect(() => {
