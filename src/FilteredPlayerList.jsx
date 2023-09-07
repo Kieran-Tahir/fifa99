@@ -20,7 +20,6 @@ function FilteredPlayerList({ maxRating, nameFilter }) {
   return (
     <>
       <div>
-        <h3>Players:</h3>
         <ul className="playerlist-container">
           {players?.map((player) => (
             <PlayerCard key={player.id} player={player} />
