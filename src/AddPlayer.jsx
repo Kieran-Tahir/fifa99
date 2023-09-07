@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import AddPlayerForm from "./AddPlayerForm";
 // import Filter from "./Filter";
 import FilteredPlayerList from "./FilteredPlayerList";
