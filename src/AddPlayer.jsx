@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import AddPlayerForm from "./AddPlayerForm";
 // import Filter from "./Filter";
 import FilteredPlayerList from "./FilteredPlayerList";
@@ -6,7 +6,9 @@ import FilteredPlayerList from "./FilteredPlayerList";
 function AddPlayer() {
   // const [maxRating, setMaxRating] = useState(100);
   // const [nameFilter, setNameFilter] = useState("");
- // for player list: maxRating={maxRating} nameFilter={nameFilter} 
+
+  const maxRating = 100
+  const nameFilter= ""
   return (
     <>
       <div className="content-wrap">
@@ -18,7 +20,7 @@ function AddPlayer() {
             setMaxRating={setMaxRating}
             setNameFilter={setNameFilter}
           /> */}
-          <FilteredPlayerList />
+          <FilteredPlayerList maxRating={maxRating} nameFilter={nameFilter} />
         </div>
       </div>
     </>
