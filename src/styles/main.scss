@@ -34,23 +34,25 @@ body {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   padding: 8px;
   border-radius: 5px;
+  margin: 20px;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+}
+
+.player-card:hover{
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+}
+
+.add-player{
+  font-size: 20px;
   margin: 5px;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  // border: 1px solid rgb(0 0 0 / 20%);
-  border-radius: 5px;
-  // box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   margin: 5px;
 }
 
 .input-row {
-  // display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   margin: 8px 0;
@@ -75,8 +77,8 @@ body {
 }
 
 .input-field,
-.age-input-field {
-  width: 100px;
+.rating-input-field {
+  width: 80px;
   padding: 5px;
 }
 
@@ -94,10 +96,15 @@ body {
   box-shadow: 2px 2px rgb(49, 63, 49);
   margin-top: 10px;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
 }
 
 .add-button:hover {
   background-color: rgb(93, 222, 93);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
+
 }
 
 // .content-wrap-left {
@@ -133,10 +140,34 @@ body {
   box-shadow: 2px 2px rgb(49, 63, 49);
   margin-bottom: 4px;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
 }
 
 .delete-button:hover {
   background-color: rgb(255, 50, 50);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
+}
+
+.delete-player-button {
+  margin: 4px;
+  border: none;
+  background-color: rgb(232, 188, 188);
+  width: auto;
+  height: 20px;
+  border-radius: 5%;
+  box-shadow: 2px 2px rgb(49, 63, 49);
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
+}
+
+.delete-player-button:hover {
+  background-color: rgb(255, 50, 50);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
 }
 
 .update-button {
@@ -148,10 +179,14 @@ body {
   box-shadow: 2px 2px rgb(49, 63, 49);
   margin-bottom: 4px;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
 }
 
 .update-button:hover {
   background-color: rgb(76, 210, 210);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
 }
 
 .filter-container {
@@ -168,10 +203,14 @@ body {
   box-shadow: 2px 2px rgb(49, 63, 49);
   margin-bottom: 4px;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
 }
 
 .delete-all-button:hover {
   background-color: rgb(255, 50, 50);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
 }
 
 .canvas{
@@ -189,10 +228,14 @@ body {
   margin-top: 5px;
   padding: 2px;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
 }
 
 .add-property-button:hover {
   background-color: rgb(93, 222, 93);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
 }
 
 .property-form{
@@ -209,10 +252,14 @@ body {
   margin-top: 5px;
   margin: 3px;
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+
 }
 
 .delete-property-button:hover {
   background-color: rgb(255, 50, 50);
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+
 }
 
 .red-background{
@@ -225,4 +272,20 @@ body {
 
 .status{
   font-size: 12px;
+}
+
+.property-key{
+  font-size: 10px;
+}
+
+.property-value{
+  font-size: 10px;
+}
+
+.bulge{
+  transition: transform 0.3s ease; /* Add this line for smooth scaling */
+}
+
+.bulge:hover{
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
 }

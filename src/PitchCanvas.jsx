@@ -46,7 +46,7 @@ function PitchCanvas({ squares, setSquares }) {
 
   return (
     <>
-      <div className="canvas">
+      <div>
         {squares.map((square, i) => (
           <PitchPlayerCard
             key={square.id}

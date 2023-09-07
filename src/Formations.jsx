@@ -111,23 +111,23 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
         };
       });
 
-      const newSquadValue = newSquares.reduce((sum, square) => {
-        if (square.player) {
-          return sum + square.player.rating;
-        }
-        return sum;
-      }, 0);
-  
-      // Update the squad value
-      setSquadValue(newSquadValue);
+    const newSquadValue = newSquares.reduce((sum, square) => {
+      if (square.player) {
+        return sum + square.player.rating;
+      }
+      return sum;
+    }, 0);
 
+    // Update the squad value
+    setSquadValue(newSquadValue);
+    
     setSquares(newSquares);
   }
-
+  
   return (
     <div className="sidebar">
       <select
-        className="formation-dropdown"
+        className="formation-dropdown bulge"
         onChange={(e) => loadFormation(e.target.value)}
       >
         <option value="">Load Formation</option>
@@ -137,13 +137,20 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
           </option>
         ))}
       </select>
-      <button className="formation-button" onClick={() => setSquares([])}>
+      <button className="formation-button bulge" onClick={() => setSquares([])}>
         + New Formation
       </button>
+      <input
+        type="text"
+        className="formation-input bulge"
+        placeholder="Formation name"
+        value={formationName}
+        onChange={(e) => setFormationName(e.target.value)}
+      />
       {Array.from({ length: 15 }).map((_, i) => (
         <select
           key={i}
-          className="player-dropdown"
+          className="player-dropdown bulge"
           value={selectedPlayers[i]}
           onChange={(e) => {
             const newSelectedPlayers = [...selectedPlayers];
@@ -159,24 +166,22 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
           ))}
         </select>
       ))}
-      <button className="add-players-button" onClick={addPlayersToPitch}>
+      <button className="add-players-button bulge" onClick={addPlayersToPitch}>
         Add Players to Pitch
       </button>
-      <input
-        type="text"
-        className="formation-input"
-        placeholder="Formation name"
-        value={formationName}
-        onChange={(e) => setFormationName(e.target.value)}
-      />
-      <button className="save-formation-button" onClick={saveFormation}>
-        Save Formation
-      </button>
-      {currentFormationId && (
-        <button className="delete-formation-button" onClick={deleteFormation}>
-          Delete Current Formation
+      <div className="formation-macros">
+        <button className="save-formation-button bulge" onClick={saveFormation}>
+          Save Formation
         </button>
-      )}
+        {currentFormationId && (
+          <button
+            className="delete-formation-button bulge"
+            onClick={deleteFormation}
+          >
+            Delete Formation
+          </button>
+        )}
+      </div>
     </div>
   );
 }

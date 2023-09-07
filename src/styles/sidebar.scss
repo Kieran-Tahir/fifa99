@@ -8,12 +8,18 @@
   padding-top: 20px; /* Adjust this value according to your design */
 }
 
-.formation-dropdown,
 .formation-button,
 .player-dropdown {
   margin: 5px;
   cursor: pointer;
   width: 150px;
+}
+
+.formation-dropdown{
+  margin: 5px;
+  cursor: pointer;
+  width: 150px;
+  background-color: #fff981;
 }
 
 .formation-input {
@@ -41,4 +47,20 @@
 .add-players-button:hover,
 .save-formation-button:hover {
   background-color: rgb(93, 222, 93);
+}
+
+.delete-formation-button{
+  margin: 4px;
+  border: none;
+  background-color: rgb(232, 188, 188);
+  width: 150px;
+  height: 20px;
+  border-radius: 5%;
+  box-shadow: 2px 2px rgb(49, 63, 49);
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.formation-macros{
+  margin-top: 40px;
 }

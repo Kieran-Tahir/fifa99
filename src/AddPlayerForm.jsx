@@ -29,14 +29,14 @@ function AddPlayerForm() {
   return (
     <>
       <div className="sidebar">
-        <h3>Add a Player</h3>
+        <p className="add-player">Add a Player</p>
         <div className="form">
           <div className="input-row">
             <label>Name</label>
             <input
               type="text"
               className="input-field"
-              placeholder="e.g. Phil Foden"
+              placeholder="e.g. Foden"
               value={name}
               onChange={(ev) => setName(ev.target.value)}
               />
