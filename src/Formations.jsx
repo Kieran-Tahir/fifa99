@@ -4,7 +4,7 @@ import { db } from "./db";
 function Formations({ squares, setSquares, squadValue, setSquadValue }) {
   const [formationName, setFormationName] = useState("");
   const [formations, setFormations] = useState([]);
-  const [selectedPlayers, setSelectedPlayers] = useState(Array(15).fill(""));
+  const [selectedPlayers, setSelectedPlayers] = useState(Array(16).fill(""));
   const [players, setPlayers] = useState([]);
   const [currentFormationId, setCurrentFormationId] = useState(null);
   const [showFormationDetails, setShowFormationDetails] = useState(false);
@@ -93,13 +93,13 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
   };
 
   function addPlayersToPitch() {
-    let startX = 264; // Starting x-coordinate
+    let startX = 265; // Starting x-coordinate
     let startY = 75; // Starting y-coordinate
     const xOffset = 150; // Horizontal offset between players
     const yOffset = 150; // Vertical offset between rows of players
 
     let row = 0; // The current row (0, 1, 2, 3, or 4)
-    const rowSizes = [3, 3, 4, 1, 4]; // Number of players in each row
+    const rowSizes = [3, 3, 4, 1, 5]; // Number of players in each row
     let playerIndexInRow = 0; // The index of the player in the current row
 
     const newSquares = selectedPlayers

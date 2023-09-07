@@ -16,7 +16,8 @@ function PitchPlayerCard ({square, handleSquareMouseDown, removePlayerFromSquad}
               {square.player && (
                 <div className="player-info">
                   <p>
-                    {square.player.name}
+                    {square.player.name}{" "}
+                    <br></br>
                     <span className="player-rating">
                       {square.player.rating}
                     </span>
