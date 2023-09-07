@@ -153,6 +153,9 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
 
   return (
     <div className="sidebar">
+      <button className="formation-button bulge" onClick={createNewFormation}>
+        New Formation
+      </button>
       <select
         className="formation-dropdown bulge"
         onChange={(e) => loadFormation(e.target.value)}
@@ -164,12 +167,9 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
           </option>
         ))}
       </select>
-      <button className="formation-button bulge" onClick={createNewFormation}>
-        + New Formation
-      </button>
-
       {showFormationDetails && (
         <>
+          <label>Formation Name:</label>
           <input
             type="text"
             className="formation-input bulge"
@@ -177,6 +177,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
             value={formationName}
             onChange={(e) => setFormationName(e.target.value)}
           />
+          <label>Select Your Players:</label>
           {Array.from({ length: 15 }).map((_, i) => (
             <select
               key={i}
