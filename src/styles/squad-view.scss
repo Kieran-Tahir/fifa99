@@ -1,11 +1,26 @@
-.squad-view-container{
-    margin-top: 30px;
+.squad-view-container {
+  margin-top: 30px;
 }
 
-.max-squad-value{
-    font-weight: bold;
+.max-squad-value {
+  font-weight: bold;
 }
 
-.max-squad-value:hover{
-    cursor: pointer;
+.max-squad-value:hover {
+  cursor: pointer;
+}
+
+.squad-view-player-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.player-rating{
+    font-size: 12px;
 }

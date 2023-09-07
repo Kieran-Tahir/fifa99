@@ -1,5 +1,6 @@
 import React from "react";
 import { db } from "./db";
+import PitchPlayerCard from "./PitchPlayerCard";
 
 function PitchCanvas({ squares, setSquares }) {
   const handleSquareMouseDown = (event, square) => {
@@ -46,32 +47,13 @@ function PitchCanvas({ squares, setSquares }) {
   return (
     <>
       <div className="canvas">
-        {squares.map((square) => (
-          <div
-            className="player-card"
+        {squares.map((square, i) => (
+          <PitchPlayerCard
             key={square.id}
-            onMouseDown={(e) => handleSquareMouseDown(e, square)}
-            style={{
-              position: square.position,
-              left: square.x,
-              top: square.y,
-              cursor: "pointer",
-            }}
-          >
-            {square.player && (
-              <div className="player-info">
-                <p>
-                  {square.player.name}, {square.player.rating}
-                </p>
-                <button
-                  className="delete-button"
-                  onClick={() => removePlayerFromSquad(square.player.id)}
-                >
-                  x
-                </button>
-              </div>
-            )}
-          </div>
+            square={square}
+            handleSquareMouseDown={handleSquareMouseDown}
+            removePlayerFromSquad={removePlayerFromSquad}
+          />
         ))}
       </div>
     </>
