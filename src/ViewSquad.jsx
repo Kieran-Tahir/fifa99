@@ -3,7 +3,7 @@ import PitchCanvas from "./PitchCanvas";
 import Formations from "./Formations";
 import { db } from "./db";
 
-function ViewSquad() {
+function ViewSquad({squadValue, setSquadValue}) {
   const [formations, setFormations] = useState([]);
   const [squares, setSquares] = useState([]);
 
@@ -31,6 +31,8 @@ function ViewSquad() {
             setFormations={setFormations}
             setSquares={setSquares}
             squares={squares}
+            squadValue={squadValue}
+            setSquadValue={setSquadValue}
           />
         </div>
         <div className="content">

@@ -10,6 +10,11 @@
   border-bottom: 0.5px solid;
 }
 
+.nav-row{
+  display: flex;
+  flex-direction: row;
+}
+
 .nav-link {
   text-decoration: none;
   color: rgb(58, 130, 255);
@@ -19,4 +24,12 @@
 
 .nav-link:hover {
   color: purple;
+}
+
+.nav-left{
+  width: 50%;
+}
+
+.nav-right{
+  width: 50%;
 }

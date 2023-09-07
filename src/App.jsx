@@ -2,12 +2,12 @@ import "./styles/index.scss";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 
-function App() {
+function App({ squadValue }) {
   return (
     <>
       <div className="App">
         <div className="navbar-container">
-          <NavBar />
+          <NavBar squadValue={squadValue} />
         </div>
         <Outlet />
       </div>

@@ -1,15 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SquadValuePanel from "./SquadValuePanel";
 
-function NavBar() {
+function NavBar({squadValue}) {
   return (
     <>
-      <div>
-        <Link to="/addplayer" className="nav-link">Players</Link>
-        <Link to="/viewsquad" className="nav-link">Squad</Link>
+      <div className="nav-row">
+        <div className="nav-left">
+          <Link to="/addplayer" className="nav-link">
+            Players
+          </Link>
+          <Link to="/viewsquad" className="nav-link">
+            Squad
+          </Link>
+        </div>
+        <div className="nav-right">
+          <SquadValuePanel squadValue={squadValue} />
+        </div>
       </div>
     </>
   );
 }
 
-export default NavBar
+export default NavBar;

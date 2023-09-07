@@ -5,4 +5,5 @@ db.version(1).stores({
   squares: "++id,x,y",
   players: "++id,name,rating",
   formations: "++id,name,layout",
+  maximumSquadValue: "++id,value"
 });
