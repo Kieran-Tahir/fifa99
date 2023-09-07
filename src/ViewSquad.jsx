@@ -25,7 +25,7 @@ function ViewSquad() {
   return (
     <>
       <div>
-        <div className="sidebar">
+        <div>
           <Formations
             formations={formations}
             setFormations={setFormations}
