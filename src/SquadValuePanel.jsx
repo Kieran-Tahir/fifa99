@@ -43,7 +43,7 @@ function SquadValuePanel({ squadValue }) {
             onChange={(e) => setMaximumSquadValue(e.target.value)}
             title="Edit maximum squad value"
           />
-          <button onClick={submitSquadValue}>+</button>
+          <button onClick={submitSquadValue} className="add-value-button bulge">+</button>
         </>
       ) : (
         <div>

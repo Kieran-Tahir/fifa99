@@ -97,13 +97,24 @@ body {
   margin-top: 10px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .add-button:hover {
   background-color: rgb(93, 222, 93);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
+}
 
+.add-value-button{
+  border: none;
+  background-color: rgb(188, 232, 188);
+  width: 15px;
+  height: 18px;
+  border-radius: 5%;
+  box-shadow: 2px 2px rgb(49, 63, 49);
+  cursor: pointer;
+  margin: 3px;
+  margin-top: 1px;
+  padding-right: 12px;
 
 }
 
