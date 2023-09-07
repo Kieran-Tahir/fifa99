@@ -7,6 +7,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
   const [selectedPlayers, setSelectedPlayers] = useState(Array(15).fill(""));
   const [players, setPlayers] = useState([]);
   const [currentFormationId, setCurrentFormationId] = useState(null);
+  const [showFormationDetails, setShowFormationDetails] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -43,9 +44,18 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
       timestamp: formattedDate,
     };
 
-    const id = await db.formations.add(formationToSave);
-    setCurrentFormationId(id);
-    setFormations([...formations, { id, ...formationToSave }]);
+    if (currentFormationId) {
+      await db.formations.update(currentFormationId, formationToSave);
+    } else {
+      const id = await db.formations.add(formationToSave);
+      setCurrentFormationId(id);
+      setFormations([...formations, { id, ...formationToSave }]);
+    }
+
+    const savedSelectedPlayers = squares.map((square) => {
+      return square.player ? square.player.name : "";
+    });
+    setSelectedPlayers(savedSelectedPlayers);
   };
 
   const loadFormation = async (formationId) => {
@@ -54,6 +64,14 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
       if (formation) {
         setSquares(formation.layout);
         setCurrentFormationId(formation.id);
+        setFormationName(formation.name);
+        setShowFormationDetails(true);
+
+        // Update selectedPlayers based on the loaded formation
+        const loadedSelectedPlayers = formation.layout.map((square) => {
+          return square.player ? square.player.name : "";
+        });
+        setSelectedPlayers(loadedSelectedPlayers);
       }
     } catch (error) {
       console.error(`Failed to load formation: ${error}`);
@@ -68,6 +86,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
       );
       setCurrentFormationId(null);
       setSquares([]);
+      setShowFormationDetails(false);
     } catch (error) {
       console.error(`Failed to delete formation: ${error}`);
     }
@@ -120,10 +139,18 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
 
     // Update the squad value
     setSquadValue(newSquadValue);
-    
+
     setSquares(newSquares);
   }
-  
+
+  const createNewFormation = () => {
+    setSquares([]);
+    setShowFormationDetails(true);
+    setFormationName("");
+    setSelectedPlayers(Array(15).fill(""));
+    setCurrentFormationId(null);
+  };
+
   return (
     <div className="sidebar">
       <select
@@ -137,51 +164,62 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
           </option>
         ))}
       </select>
-      <button className="formation-button bulge" onClick={() => setSquares([])}>
+      <button className="formation-button bulge" onClick={createNewFormation}>
         + New Formation
       </button>
-      <input
-        type="text"
-        className="formation-input bulge"
-        placeholder="Formation name"
-        value={formationName}
-        onChange={(e) => setFormationName(e.target.value)}
-      />
-      {Array.from({ length: 15 }).map((_, i) => (
-        <select
-          key={i}
-          className="player-dropdown bulge"
-          value={selectedPlayers[i]}
-          onChange={(e) => {
-            const newSelectedPlayers = [...selectedPlayers];
-            newSelectedPlayers[i] = e.target.value;
-            setSelectedPlayers(newSelectedPlayers);
-          }}
-        >
-          <option value="">Select a player</option>
-          {players.map((player) => (
-            <option key={player.id} value={player.name}>
-              {player.name}, {player.rating}
-            </option>
+
+      {showFormationDetails && (
+        <>
+          <input
+            type="text"
+            className="formation-input bulge"
+            placeholder="Formation name"
+            value={formationName}
+            onChange={(e) => setFormationName(e.target.value)}
+          />
+          {Array.from({ length: 15 }).map((_, i) => (
+            <select
+              key={i}
+              className="player-dropdown bulge"
+              value={selectedPlayers[i]}
+              onChange={(e) => {
+                const newSelectedPlayers = [...selectedPlayers];
+                newSelectedPlayers[i] = e.target.value;
+                setSelectedPlayers(newSelectedPlayers);
+              }}
+            >
+              <option value="">Select a player</option>
+              {players.map((player) => (
+                <option key={player.id} value={player.name}>
+                  {player.name}, {player.rating}
+                </option>
+              ))}
+            </select>
           ))}
-        </select>
-      ))}
-      <button className="add-players-button bulge" onClick={addPlayersToPitch}>
-        Add Players to Pitch
-      </button>
-      <div className="formation-macros">
-        <button className="save-formation-button bulge" onClick={saveFormation}>
-          Save Formation
-        </button>
-        {currentFormationId && (
           <button
-            className="delete-formation-button bulge"
-            onClick={deleteFormation}
+            className="add-players-button bulge"
+            onClick={addPlayersToPitch}
           >
-            Delete Formation
+            Add Players to Pitch
           </button>
-        )}
-      </div>
+          <div className="formation-macros">
+            <button
+              className="save-formation-button bulge"
+              onClick={saveFormation}
+            >
+              Save Formation
+            </button>
+            {currentFormationId && (
+              <button
+                className="delete-formation-button bulge"
+                onClick={deleteFormation}
+              >
+                Delete Formation
+              </button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
