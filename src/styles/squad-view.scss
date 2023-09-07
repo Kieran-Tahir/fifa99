@@ -15,19 +15,37 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  // box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   padding: 8px;
-  border-radius: 5px;
+  border-radius: 50%;
   margin: 5px;
+}
+
+.player-info{
+  padding: 3px;
 }
 
 .player-rating{
     font-size: 12px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    padding: 8px;
+    border-radius: 50%;
+    margin-top: 20px;
+  
 }
 
 .content{
     margin-left: 175px;
     margin-top: 50px;
     width: 100vh;
+}
+
+.small-delete-button{
+  border: none;
+  background-color: rgb(232, 188, 188);
+  width: 10px;
+  height: 10px;
+  border-radius: 5%;
+  cursor: pointer;
 }
 

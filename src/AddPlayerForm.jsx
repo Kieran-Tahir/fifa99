@@ -56,6 +56,10 @@ function AddPlayerForm() {
           </button>
               {status ? <p className="status">{status}</p> : <p></p>}
         </div>
+        <p>Banlist</p>
+        <p>mbap</p>
+        <p>VVD</p>
+        <p>messi</p>
       </div>
     </>
   );
