@@ -1,3 +1,5 @@
+@import './variables';
+
 .squad-view-container {
   margin-top: 30px;
 }
@@ -19,29 +21,39 @@
   padding: 8px;
   border-radius: 50%;
   margin: 5px;
+  max-width: 20px;
   position: absolute;
 }
 
-.player-info{
+.player-info {
   padding: 3px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
 }
 
-.player-rating{
-    font-size: 12px;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-    padding: 8px;
-    border-radius: 50%;
-    margin-top: 20px;
-  
+.player-rating {
+  font-size: 12px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  padding: 8px;
+  border-radius: 50%;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);  
 }
 
-.content{
-    margin-left: 175px;
-    margin-top: 50px;
-    width: 100vh;
+.content {
+  // width: 100vh;
+  // height: 100vh;
+  width: 74vh;
+  height: 86vh;
+  // background-color: #f5fcf5;
+  margin: 26px;
+  background-image: url("../../public/pitch.png");
+  background-size: 90%; /* Scale the image to cover the entire element */
+  background-position: center; /* Center the image horizontally and vertically */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
-.small-delete-button{
+.small-delete-button {
   border: none;
   background-color: rgb(232, 188, 188);
   width: 10px;
@@ -49,4 +61,3 @@
   border-radius: 5%;
   cursor: pointer;
 }
-
