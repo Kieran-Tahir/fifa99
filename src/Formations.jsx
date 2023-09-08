@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./db";
+import positions from "./positions";
 
 function Formations({ squares, setSquares, squadValue, setSquadValue }) {
   const [formationName, setFormationName] = useState("");
@@ -93,39 +94,19 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
   };
 
   function addPlayersToPitch() {
-    let startX = 265; // Starting x-coordinate
-    let startY = 75; // Starting y-coordinate
-    const xOffset = 150; // Horizontal offset between players
-    const yOffset = 150; // Vertical offset between rows of players
-
-    let row = 0; // The current row (0, 1, 2, 3, or 4)
-    const rowSizes = [3, 3, 4, 1, 5]; // Number of players in each row
-    let playerIndexInRow = 0; // The index of the player in the current row
-
     const newSquares = selectedPlayers
       .filter((playerName) => playerName !== "") // Filter out empty selections
       .map((playerName, i) => {
         // Find the player object based on the name
         const player = players.find((p) => p.name === playerName);
 
-        // Calculate the current position
-        const x = startX + playerIndexInRow * xOffset;
-        const y = startY + row * yOffset;
-
-        // Update the index of the player in the current row
-        playerIndexInRow++;
-
-        // Update row and reset playerIndexInRow if this player is the last in the current row
-        if (playerIndexInRow === rowSizes[row]) {
-          row++;
-          playerIndexInRow = 0;
-        }
+        // Get the corresponding position
+        const position = positions[i] || { x: 0, y: 0 };
 
         return {
           id: i + Date.now(),
-          x: x,
-          y: y,
-          position: "absolute",
+          x: position.x,
+          y: position.y,
           player: player,
         };
       });
