@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "./db";
 
-function PlayerSearch() {
+function PlayerSearch({ addPlayersToPitch }) {
   const [search, setSearch] = useState("");
   //   const [resultList, setResultList] = useState([]);
   const [error, setError] = useState("");
@@ -23,17 +23,17 @@ function PlayerSearch() {
   function handleSearch(result) {
     if (searchQuery) {
       if (searchQuery.length === 1) {
-        let matcher = searchQuery[0].name;
-        console.log("matcher is: ", matcher);
+        let playerToAdd = searchQuery[0];
         setError("");
         setSearch("");
+        addPlayersToPitch(playerToAdd);
         setSuccess("Player added");
       } else if (result.name) {
-        let matcher = result.name;
+        let playerToAdd = result;
         setError("");
         setSearch("");
+        addPlayersToPitch(playerToAdd);
         setSuccess("Player added");
-        console.log("matcher is: ", matcher);
       } else {
         setSuccess("");
         setError("I need a little more info");
@@ -45,25 +45,25 @@ function PlayerSearch() {
   }
 
   function enter(e) {
-    console.log("e is: ", e);
-    console.log("e.key is: ", e.key);
     if (e.key === "Enter") {
       handleSearch(search);
     }
   }
 
+  // Recreate the formations logic when player is searched:
+
   return (
     <>
       <div className="search-box-container">
-        <div className="searchbox bulge">
+        <div className="searchbox">
           <div className="message">
             {success && <div className="success-message">{success}</div>}
             {error && <div className="error-message">{error}</div>}
           </div>
           <input
             type="text"
-            placeholder="Search here"
-            className=""
+            placeholder="Player search..."
+            className="search-input-field bulge"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyPress={(e) => enter(e)}

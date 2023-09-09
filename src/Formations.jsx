@@ -11,6 +11,8 @@ function Formations({ squares, setSquares, setSquadValue }) {
   const [players, setPlayers] = useState([]);
   const [currentFormationId, setCurrentFormationId] = useState(null);
   const [showFormationDetails, setShowFormationDetails] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextPlayer, setNextPlayer] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -42,7 +44,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
     setSquadValue(newSquadValue);
   }, [squares, setSquadValue]);
 
-  async function saveFormation () {
+  async function saveFormation() {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}/${
       currentDate.getMonth() + 1
@@ -64,7 +66,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
       return square.player ? square.player.name : "";
     });
     setSelectedPlayers(savedSelectedPlayers);
-  };
+  }
 
   async function loadFormation(formationId) {
     try {
@@ -100,36 +102,68 @@ function Formations({ squares, setSquares, setSquadValue }) {
     }
   };
 
-  function addPlayersToPitch() {
-    const newSquares = selectedPlayers
-      .filter((playerName) => playerName !== "") // Filter out empty selections
-      .map((playerName, i) => {
-        // Find the player object based on the name
-        const player = players.find((p) => p.name === playerName);
+  function addPlayersToPitch(playerToAdd) {
+    if (playerToAdd) {
+      // this code generates the item moving through the array
+      // Array.from({ length: 16 }).map((_, i) => {
+      //   const newSelectedPlayers = [...selectedPlayers];
+      //   if (selectedPlayers[i] === "" ) {
+      //     console.log('selectedPlayers is: ', selectedPlayers)
+      //     newSelectedPlayers[i] = playerToAdd;
+      //     setSelectedPlayers(newSelectedPlayers);
+      //   }
 
-        // Get the corresponding position
-        const position = positions[i] || { x: 0, y: 0 };
-
-        return {
-          id: i + Date.now(),
-          x: position.x,
-          y: position.y,
-          player: player,
-        };
+      //   console.log("newSelectedPlayers is: ", newSelectedPlayers);
+      //   return newSelectedPlayers
+      // });
+      selectedPlayers.map((slot, i) => {
+        console.log("currentIndex is: ", currentIndex);
+        const newSelectedPlayers = [...selectedPlayers];
+        newSelectedPlayers[currentIndex] = playerToAdd;
+        setCurrentIndex(currentIndex + 1);
+        setNextPlayer(newSelectedPlayers[currentIndex]);
+        setSelectedPlayers(newSelectedPlayers);
+        console.log("selectedPlayers is: ", selectedPlayers);
+        return playerToAdd;
       });
+    }
+    // const newSquares = selectedPlayers
+    //   .filter((playerName) => playerName !== "") // Filter out empty selections
+    //   .map((playerName, i) => {
+    //     // Find the player object based on the name
 
+    //     // const player = players.find((p) => p.name === playerName);
+    //     const player = nextPlayer
+
+    const newSquares = selectedPlayers.map((player, i) => {
+      // Get the corresponding position
+      const position = positions[i] || { x: 0, y: 0 };
+
+      return {
+        id: i + Date.now(),
+        x: position.x,
+        y: position.y,
+        player: player,
+      };
+    });
+    // });
+    console.log("newSquares is: ", newSquares);
     const newSquadValue = newSquares.reduce((sum, square) => {
       if (square.player) {
         return sum + square.player.rating;
       }
       return sum;
     }, 0);
-
+    console.log("newSquadValue is: ", newSquadValue);
     // Update the squad value
     setSquadValue(newSquadValue);
 
     setSquares(newSquares);
   }
+
+  useEffect(() => {
+    addPlayersToPitch()
+  }, [selectedPlayers])
 
   const createNewFormation = () => {
     setSquares([]);
@@ -166,7 +200,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
             onChange={(e) => setFormationName(e.target.value)}
           />
           <label>Select Your Players:</label>
-          {/* {Array.from({ length: 16 }).map((_, i) => (
+          {Array.from({ length: 16 }).map((_, i) => (
             <select
               key={i}
               className="player-dropdown bulge"
@@ -174,6 +208,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
               onChange={(e) => {
                 const newSelectedPlayers = [...selectedPlayers];
                 newSelectedPlayers[i] = e.target.value;
+                console.log("newSelectedPlayers is: ", newSelectedPlayers);
                 setSelectedPlayers(newSelectedPlayers);
               }}
             >
@@ -184,7 +219,8 @@ function Formations({ squares, setSquares, setSquadValue }) {
                 </option>
               ))}
             </select>
-          ))} */}
+          ))}
+          <PlayerSearch addPlayersToPitch={addPlayersToPitch} />
           <button
             className="add-players-button bulge"
             onClick={addPlayersToPitch}
