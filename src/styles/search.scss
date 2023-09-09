@@ -11,6 +11,12 @@
     border: 5px solid black;
 }
 
+.search-input-field{
+    font-size: 20px;
+    width: 200px;
+    height: 20px;
+}
+
 .search-results{
     margin-top: 10px;
     margin-left: 39%;
@@ -29,9 +35,16 @@
     color: #3a82ff;
 }
 
-.error-message{
+.message{
     font-size: 11px;
-    margin: 2px;
-    color: red;
+    margin: 8px;
     height: 10px;
+}
+
+.error-message{
+    color: red;
+}
+
+.success-message{
+    color: rgb(0, 182, 36);
 }

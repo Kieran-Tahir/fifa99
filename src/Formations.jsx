@@ -185,7 +185,6 @@ function Formations({ squares, setSquares, setSquadValue }) {
               ))}
             </select>
           ))} */}
-          <PlayerSearch />
           <button
             className="add-players-button bulge"
             onClick={addPlayersToPitch}

@@ -5,7 +5,8 @@ import { db } from "./db";
 function PlayerSearch() {
   const [search, setSearch] = useState("");
   //   const [resultList, setResultList] = useState([]);
-  const [status, setStatus] = useState("")
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const searchQuery = useLiveQuery(async () => {
     let query = db.players.where("name").startsWithIgnoreCase(search);
@@ -20,20 +21,26 @@ function PlayerSearch() {
   }, [search]);
 
   function handleSearch(result) {
-    if (searchQuery){
-        if (searchQuery.length === 1) {
-          let matcher = searchQuery[0].name;
-          console.log("matcher is: ", matcher);
-          setStatus("")
-        } else if (result.name){
-          let matcher = result.name;
-          setStatus("")
-          console.log("matcher is: ", matcher);
-        } else {
-            setStatus("Please enter player name")
-        }
+    if (searchQuery) {
+      if (searchQuery.length === 1) {
+        let matcher = searchQuery[0].name;
+        console.log("matcher is: ", matcher);
+        setError("");
+        setSearch("");
+        setSuccess("Player added");
+      } else if (result.name) {
+        let matcher = result.name;
+        setError("");
+        setSearch("");
+        setSuccess("Player added");
+        console.log("matcher is: ", matcher);
+      } else {
+        setSuccess("");
+        setError("I need a little more info");
+      }
     } else {
-        setStatus("Please enter player to search for")
+      setSuccess("");
+      setError("Start entering a player name");
     }
   }
 
@@ -49,10 +56,14 @@ function PlayerSearch() {
     <>
       <div className="search-box-container">
         <div className="searchbox bulge">
-        <div className="error-message">{status}</div>
+          <div className="message">
+            {success && <div className="success-message">{success}</div>}
+            {error && <div className="error-message">{error}</div>}
+          </div>
           <input
             type="text"
             placeholder="Search here"
+            className=""
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyPress={(e) => enter(e)}
@@ -60,7 +71,8 @@ function PlayerSearch() {
         </div>
       </div>
       <div className="search-results">
-        {searchQuery &&
+        {search !== "" &&
+          searchQuery &&
           searchQuery.map((result, i) => (
             <div key={i} className="one-result bulge">
               <div onClick={() => handleSearch(result)}>
