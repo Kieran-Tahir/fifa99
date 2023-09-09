@@ -3,7 +3,7 @@ import { db } from "./db";
 
 function SquadValuePanel({ squadValue }) {
   const [isActive, setIsActive] = useState(false);
-  const [maximumSquadValue, setMaximumSquadValue] = useState(1000);
+  const [maximumSquadValue, setMaximumSquadValue] = useState(1250);
 
   // Load squad value from db
   useEffect(() => {

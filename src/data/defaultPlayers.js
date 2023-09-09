@@ -11,8 +11,8 @@ export const defaultPlayers = [
   { name: "Walker", rating: 85, id: 11 },
   { name: "Donnarumma", rating: 88, id: 17 },
   { name: "Sterling", rating: 86, id: 18 },
+  { name: "Kone", rating: 77, id: 24 },
   { name: "Dabas", rating: 46, id: 21 },
   { name: "Dhafeeri", rating: 46, id: 22 },
   { name: "Wenzhe", rating: 46, id: 23 },
-  { name: "Bhutia", rating: 48, id: 24 },
 ];
