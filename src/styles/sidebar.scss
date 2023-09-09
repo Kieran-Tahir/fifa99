@@ -15,7 +15,7 @@
   width: 150px;
 }
 
-.formation-dropdown{
+.formation-dropdown {
   margin: 5px;
   cursor: pointer;
   width: 150px;
@@ -49,7 +49,7 @@
   background-color: rgb(93, 222, 93);
 }
 
-.delete-formation-button{
+.delete-formation-button {
   margin: 4px;
   border: none;
   background-color: rgb(232, 188, 188);
@@ -61,14 +61,15 @@
   cursor: pointer;
 }
 
-.formation-macros{
+.formation-macros {
+  display: flex;
+  flex-direction: column;
   margin-top: 40px;
 }
 
-label{
+label {
   display: flex;
   margin: 5px;
   margin-top: 10px;
   font-size: 12px;
-
 }

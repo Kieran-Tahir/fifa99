@@ -5,7 +5,7 @@ import AddPlayer from "./AddPlayer";
 import ViewSquad from "./ViewSquad";
 
 function MyRouter() {
-  const [squadValue, setSquadValue] = useState(1275)
+  const [squadValue, setSquadValue] = useState(1250)
 
   return (
     <Router>
