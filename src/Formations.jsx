@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "./db";
 import positions from "./data/defaultPositions";
 import { defaultFormation } from "./data/defaultFormation";
+import PlayerSearch from "./PlayerSearch";
 
 function Formations({ squares, setSquares, setSquadValue }) {
   const [formationName, setFormationName] = useState(defaultFormation.name);
@@ -165,7 +166,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
             onChange={(e) => setFormationName(e.target.value)}
           />
           <label>Select Your Players:</label>
-          {Array.from({ length: 16 }).map((_, i) => (
+          {/* {Array.from({ length: 16 }).map((_, i) => (
             <select
               key={i}
               className="player-dropdown bulge"
@@ -183,7 +184,8 @@ function Formations({ squares, setSquares, setSquadValue }) {
                 </option>
               ))}
             </select>
-          ))}
+          ))} */}
+          <PlayerSearch />
           <button
             className="add-players-button bulge"
             onClick={addPlayersToPitch}

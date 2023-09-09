@@ -1,6 +1,7 @@
 body {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  // font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  //   monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App {
@@ -18,18 +19,16 @@ body {
 
 .playerlist-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: row;
   padding: 20px;
-  // margin-right: 10%;
-  // margin-left: 10%;
 }
 
 .player-card {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   padding: 8px;
@@ -38,11 +37,15 @@ body {
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
 }
 
-.player-card:hover{
+.player-card:hover {
   transform: scale(1.1); /* Scale the element to 110% when hovered */
 }
 
-.add-player{
+.player-properties {
+  font-size: 12px;
+}
+
+.add-player {
   font-size: 20px;
   margin: 5px;
 }
@@ -104,7 +107,7 @@ body {
   transform: scale(1.1); /* Scale the element to 110% when hovered */
 }
 
-.add-value-button{
+.add-value-button {
   border: none;
   background-color: rgb(188, 232, 188);
   width: 15px;
@@ -115,7 +118,6 @@ body {
   margin: 3px;
   margin-top: 1px;
   padding-right: 12px;
-
 }
 
 // .content-wrap-left {
@@ -152,13 +154,11 @@ body {
   margin-bottom: 4px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .delete-button:hover {
   background-color: rgb(255, 50, 50);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
-
 }
 
 .delete-player-button {
@@ -172,13 +172,11 @@ body {
   margin-bottom: 4px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .delete-player-button:hover {
   background-color: rgb(255, 50, 50);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
-
 }
 
 .update-button {
@@ -191,13 +189,11 @@ body {
   margin-bottom: 4px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .update-button:hover {
   background-color: rgb(76, 210, 210);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
-
 }
 
 .filter-container {
@@ -215,16 +211,14 @@ body {
   margin-bottom: 4px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .delete-all-button:hover {
   background-color: rgb(255, 50, 50);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
-
 }
 
-.canvas{
+.canvas {
   background-color: rgb(164, 255, 164);
 }
 
@@ -240,17 +234,16 @@ body {
   padding: 2px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .add-property-button:hover {
   background-color: rgb(93, 222, 93);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
-
 }
 
-.property-form{
+.property-form {
   margin: 2px;
+  width: 30px;
 }
 
 .delete-property-button {
@@ -264,39 +257,33 @@ body {
   margin: 3px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
-
 }
 
 .delete-property-button:hover {
   background-color: rgb(255, 50, 50);
   transform: scale(1.1); /* Scale the element to 110% when hovered */
-
 }
 
-.red-background{
+.red-background {
   background-color: rgb(255, 120, 120);
 }
 
-.green-background{
+.green-background {
   background-color: rgb(161, 248, 161);
 }
 
-.status{
+.status {
   font-size: 12px;
 }
 
-.property-key{
-  font-size: 10px;
-}
-
-.property-value{
-  font-size: 10px;
-}
-
-.bulge{
+.bulge {
   transition: transform 0.3s ease; /* Add this line for smooth scaling */
 }
 
-.bulge:hover{
+.bulge:hover {
   transform: scale(1.1); /* Scale the element to 110% when hovered */
+}
+
+.player-property{
+  padding-top: 5px;
 }

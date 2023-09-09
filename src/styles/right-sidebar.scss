@@ -1,9 +1,53 @@
 .right-sidebar {
   display: flex;
   flex-direction: column;
-  border-left: 0.5px solid;
-  width: 175px;
+  align-items: flex-start;
+  // border-left: 0.5px solid;
+  // border-right: 0.5px solid;
+  width: 155px;
   height: 100vh;
   padding: 10px;
   padding-top: 20px;
+  // background-color: rgb(236, 236, 236);
+
+}
+
+.rating-graph-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.rating-graph {
+  display: flex;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.rating-percent {
+  display: flex;
+  justify-content: left;
+  padding: 2px;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  text-shadow: 5px;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.active-player-title{
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+
+.active-player-property-container{
+  padding: 5px;
+}
+
+.active-player-property{
+  display: flex;
+  justify-content: left;
+  margin-top: 10px;
+  font-size: 15px;
+  font-style: italic;
 }

@@ -1,0 +1,37 @@
+.search-box-container{
+    display: flex;
+    justify-content: center;
+}
+
+.search-box{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+}
+
+.search-results{
+    margin-top: 10px;
+    margin-left: 39%;
+    margin-right: 39%;
+}
+
+.one-result{
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    cursor: pointer;
+    background-color: #efefef;
+    margin: 5px;
+    color: #3a82ff;
+}
+
+.error-message{
+    font-size: 11px;
+    margin: 2px;
+    color: red;
+    height: 10px;
+}

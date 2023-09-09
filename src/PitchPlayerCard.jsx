@@ -4,12 +4,16 @@ function PitchPlayerCard({
   square,
   handleSquareMouseDown,
   removePlayerFromSquad,
+  handleActivePlayerOne,
+  handleActivePlayerTwo
 }) {
   return (
     <>
       <div
         className="squad-view-player-card bulge"
         onMouseDown={(e) => handleSquareMouseDown(e, square)}
+        onClick={() => handleActivePlayerOne(square.player.name)}
+        onContextMenu={(e) => handleActivePlayerTwo(square.player.name, e)}
         style={{
           position: square.position,
           left: square.x,

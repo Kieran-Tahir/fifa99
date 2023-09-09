@@ -16,7 +16,7 @@ function FilteredPlayerList({ maxRating, nameFilter }) {
       return filteredThings;
     } else {
       defaultPlayers.map((player) => {
-        return db.players.add({name: player.name, rating: player.rating, id: player.id})
+        return db.players.add({name: player.name, rating: player.rating, stats:player.stats, id: player.id})
       })
       const batchArray = await db.players.toArray();
       return batchArray;

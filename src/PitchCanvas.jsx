@@ -2,7 +2,7 @@ import React from "react";
 import { db } from "./db";
 import PitchPlayerCard from "./PitchPlayerCard";
 
-function PitchCanvas({ squares, setSquares }) {
+function PitchCanvas({ squares, setSquares, handleActivePlayerOne, handleActivePlayerTwo }) {
   const handleSquareMouseDown = (event, square) => {
     const x = event.clientX - square.x;
     const y = event.clientY - square.y;
@@ -53,6 +53,8 @@ function PitchCanvas({ squares, setSquares }) {
             square={square}
             handleSquareMouseDown={handleSquareMouseDown}
             removePlayerFromSquad={removePlayerFromSquad}
+            handleActivePlayerOne={handleActivePlayerOne}
+            handleActivePlayerTwo={handleActivePlayerTwo}
           />
         ))}
       </div>
