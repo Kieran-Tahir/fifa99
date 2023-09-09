@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./db";
-import positions from "./positions";
+import positions from "./data/defaultPositions";
+import { defaultFormation } from "./data/defaultFormation";
 
-function Formations({ squares, setSquares, squadValue, setSquadValue }) {
-  const [formationName, setFormationName] = useState("");
+function Formations({ squares, setSquares, setSquadValue }) {
+  const [formationName, setFormationName] = useState(defaultFormation.name);
   const [formations, setFormations] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState(Array(16).fill(""));
   const [players, setPlayers] = useState([]);
   const [currentFormationId, setCurrentFormationId] = useState(null);
-  const [showFormationDetails, setShowFormationDetails] = useState(false);
+  const [showFormationDetails, setShowFormationDetails] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -17,6 +18,12 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
         const formationsFromDB = await db.formations.toArray();
         setPlayers(playersFromDB);
         setFormations(formationsFromDB);
+        setSquares(defaultFormation.layout);
+
+        const loadedSelectedPlayers = defaultFormation.layout.map((square) => {
+          return square.player ? square.player.name : "";
+        });
+        setSelectedPlayers(loadedSelectedPlayers);
       } catch (error) {
         console.error(`Failed to fetch data: ${error}`);
       }
@@ -34,7 +41,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
     setSquadValue(newSquadValue);
   }, [squares, setSquadValue]);
 
-  const saveFormation = async () => {
+  async function saveFormation () {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}/${
       currentDate.getMonth() + 1
@@ -44,7 +51,6 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
       layout: squares,
       timestamp: formattedDate,
     };
-
     if (currentFormationId) {
       await db.formations.update(currentFormationId, formationToSave);
     } else {
@@ -59,7 +65,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
     setSelectedPlayers(savedSelectedPlayers);
   };
 
-  const loadFormation = async (formationId) => {
+  async function loadFormation(formationId) {
     try {
       const formation = await db.formations.get(Number(formationId));
       if (formation) {
@@ -77,7 +83,7 @@ function Formations({ squares, setSquares, squadValue, setSquadValue }) {
     } catch (error) {
       console.error(`Failed to load formation: ${error}`);
     }
-  };
+  }
 
   const deleteFormation = async () => {
     try {
