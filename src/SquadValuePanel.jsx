@@ -5,6 +5,17 @@ function SquadValuePanel({ squadValue }) {
   const [isActive, setIsActive] = useState(false);
   const [maximumSquadValue, setMaximumSquadValue] = useState(1250);
 
+  // Add a value initially if the table is empty
+  useEffect(() => {
+    async function addInitialValue () {
+      const allValues = await db.maximumSquadValue.toArray();
+      if (allValues.length === 0) {
+        await db.maximumSquadValue.add({ value: 1250 });
+      }
+    };
+    addInitialValue();
+  }, []);
+
   // Load squad value from db
   useEffect(() => {
     async function loadMaximumSquadValue() {
@@ -17,7 +28,6 @@ function SquadValuePanel({ squadValue }) {
     }
     loadMaximumSquadValue();
   }, []);
-
 
   // Toggles between display and input field
   function handleActivation() {
