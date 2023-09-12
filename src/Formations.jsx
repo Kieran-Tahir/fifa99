@@ -32,7 +32,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
       }
     }
     fetchData();
-  }, []);
+  }, [setSquares]);
 
   useEffect(() => {
     const newSquadValue = squares.reduce((sum, square) => {
