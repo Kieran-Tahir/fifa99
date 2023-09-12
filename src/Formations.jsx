@@ -12,7 +12,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
   const [currentFormationId, setCurrentFormationId] = useState(null);
   const [showFormationDetails, setShowFormationDetails] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextPlayer, setNextPlayer] = useState({});
+  // const [nextPlayer, setNextPlayer] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -121,7 +121,7 @@ function Formations({ squares, setSquares, setSquadValue }) {
         const newSelectedPlayers = [...selectedPlayers];
         newSelectedPlayers[currentIndex] = playerToAdd;
         setCurrentIndex(currentIndex + 1);
-        setNextPlayer(newSelectedPlayers[currentIndex]);
+        // setNextPlayer(newSelectedPlayers[currentIndex]);
         setSelectedPlayers(newSelectedPlayers);
         console.log("selectedPlayers is: ", selectedPlayers);
         return playerToAdd;
