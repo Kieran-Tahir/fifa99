@@ -161,9 +161,9 @@ function Formations({ squares, setSquares, setSquadValue }) {
     setSquares(newSquares);
   }
 
-  useEffect(() => {
-    addPlayersToPitch()
-  }, [selectedPlayers])
+  // useEffect(() => {
+  //   addPlayersToPitch()
+  // })
 
   const createNewFormation = () => {
     setSquares([]);
