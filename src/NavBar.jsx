@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SquadValuePanel from "./SquadValuePanel";
 
-function NavBar({squadValue}) {
+function NavBar({ squadValue }) {
   return (
     <>
       <div className="nav-row">
